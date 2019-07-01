@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">ColorStudio</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <!--Web Service-->
+    <string name="time_out">عدم برقراری ارتباط. دوباره تلاش کنید</string>
+    <string name="no_connection">عدم اتصال به اینترنت</string>
+    <string name="server_error">خطای سرور</string>
+    <string name="server_disconnect">عدم برقراری ارتباط با سرور</string>
+
+<!--Home -->
+    <string name="productions">محصولات</string>
+    <string name="instagram">اینستاگرام</string>
+    <string name="number_title">شماره</string>
+
+
+</resources>

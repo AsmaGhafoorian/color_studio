@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray1"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+<android.support.v4.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/margin_30"
+   >
+<android.support.constraint.ConstraintLayout
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/margin_30">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="1dp"
+        android:id="@+id/main_container"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    </FrameLayout>
+
+    <!--slider view-->
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/sliderCly"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_slider"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintDimensionRatio="2:1"
+            android:clipToPadding="false"
+            android:paddingEnd="0dp"/>
+
+        <com.rd.PageIndicatorView
+            android:id="@+id/pageIndicatorView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:piv_animationType="swap"
+            app:piv_dynamicCount="true"
+            app:piv_interactiveAnimation="true"
+            app:piv_selectedColor="@color/gray2"
+            app:piv_unselectedColor="@color/gray3"
+            app:piv_viewPager="@id/vp_slider"
+            app:piv_radius="4dp"
+            app:piv_scaleFactor="0.85"
+            android:layout_marginTop="@dimen/margin_10"
+            app:layout_constraintLeft_toLeftOf="@id/vp_slider"
+            app:layout_constraintRight_toRightOf="@id/vp_slider"
+            app:layout_constraintTop_toBottomOf="@id/vp_slider"
+           />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/productsCly"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_20"
+        app:layout_constraintTop_toBottomOf="@id/sliderCly">
+    <TextView
+        android:id="@+id/productionsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/productions"
+        android:textColor="@color/gray4"
+        android:fontFamily="@font/medium"
+        android:textSize="@dimen/font_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/margin_10"/>
+
+    <android.support.v7.widget.RecyclerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/productsRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/margin_10"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/productionsTitle"
+        android:layoutDirection="rtl"
+
+        tools:listitem="@layout/adapter_products"/>
+    </android.support.constraint.ConstraintLayout>
+    <!--<TextView-->
+        <!--android:id="@+id/instagramTitle"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/productsRecycler"-->
+        <!--android:layout_marginTop="@dimen/margin_10"-->
+        <!--android:text="@string/instagram"-->
+        <!--android:textColor="@color/gray4"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--android:layout_marginEnd="@dimen/margin_10"/>-->
+
+    <!--<android.support.v7.widget.RecyclerView-->
+        <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--android:id="@+id/instagramRecycler"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
+        <!--app:layoutManager="android.support.v7.widget.LinearLayoutManager"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/productionsTitle"-->
+        <!--tools:listitem="@layout/adapter_instagram"/>-->
+
+</android.support.constraint.ConstraintLayout>
+
+</android.support.v4.widget.NestedScrollView>
+
+    <ImageButton
+        android:id="@+id/fab"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:clickable="true"
+        android:background="@null"
+        android:src="@drawable/fabback"
+        android:layout_marginTop="@dimen/margin_10"
+        android:scaleType="centerCrop"
+        android:focusable="true" />
+
+    <com.noxel.colorstudio.utils.CustomBottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?android:attr/windowBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:labelVisibilityMode="unlabeled"
+        app:menu="@menu/bottom_nav_menu" />
+
+</android.support.constraint.ConstraintLayout>
