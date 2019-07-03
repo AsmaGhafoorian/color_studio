@@ -1,4 +1,4 @@
-package com.noxel.colorstudio.ui.main
+package com.noxel.colorstudio.ui.main.home
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -21,9 +21,9 @@ class ProductsAdapter (val productsList: List<ProductModel>,
 
     override fun getItemCount(): Int = productsList.count()
 
-    override fun onBindViewHolder(holder: ProductsAdapter.ViewHolder, position: Int) = holder.bind(productsList[position])
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(productsList[position])
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductsAdapter.ViewHolder = ViewHolder(parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(parent)
 
 
     inner class ViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(parent.inflate(R.layout.adapter_products)) {

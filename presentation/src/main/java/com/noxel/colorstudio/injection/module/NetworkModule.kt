@@ -1,7 +1,6 @@
 package com.noxel.colorstudio.injection.module
 
-import com.noxel.colorstudio.remote.GetProductsApi
-import com.noxel.colorstudio.remote.GetSlidersApi
+import com.noxel.colorstudio.remote.*
 import com.noxel.colorstudio.utils.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -49,5 +48,15 @@ class NetworkModule {
 
     @Provides
     fun GetProductsApi(retrofit: Retrofit): GetProductsApi = retrofit.create(GetProductsApi::class.java)
+
+    @Provides
+    fun GetCategoriesApi(retrofit: Retrofit): GetCategoriesApi = retrofit.create(GetCategoriesApi::class.java)
+
+    @Provides
+    fun GetSubCategoriesApi(retrofit: Retrofit): GetSubCategoriesApi = retrofit.create(GetSubCategoriesApi::class.java)
+
+    @Provides
+    fun PostSearchApi(retrofit: Retrofit): PostSearchApi = retrofit.create(PostSearchApi::class.java)
+
 
 }

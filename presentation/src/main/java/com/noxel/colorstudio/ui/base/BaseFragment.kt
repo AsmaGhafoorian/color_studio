@@ -5,12 +5,15 @@ import android.arch.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.View
+import com.noxel.colorstudio.ViewModelFactory
 import com.noxel.colorstudio.getAppInjector
 import javax.inject.Inject
 
 open class BaseFragment : Fragment(){
 
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
     var activity : BaseActivity? = null
 
 

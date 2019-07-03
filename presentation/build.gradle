@@ -37,7 +37,6 @@ dependencies {
     implementation SupportLibraries.cardview_v7
     implementation SupportLibraries.recyclerview_v7
     implementation SupportLibraries.constraint_layout
-    implementation Libraries.maps
     implementation Libraries.timber
     implementation Libraries.rxandroid
     implementation Libraries.rxkotlin
@@ -80,6 +79,9 @@ dependencies {
 
     /*rtl view pager*/
     implementation 'com.duolingo.open:rtl-viewpager:1.0.3'
+
+    /*search*/
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1'
 
 }
 repositories {

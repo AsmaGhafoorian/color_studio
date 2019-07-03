@@ -24,7 +24,9 @@
             </intent-filter>
         </activity>
 
-
+        <activity android:name=".ui.search.SearchActivity"/>
+        <activity android:name=".ui.main.sub_category.SubCategoryActivity"/>
+        <activity android:name=".ui.ProductDetailsActivity"/>
     </application>
 
 </manifest>

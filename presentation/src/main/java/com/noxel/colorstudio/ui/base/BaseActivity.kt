@@ -1,7 +1,6 @@
 package com.noxel.colorstudio.ui.base
 
 import android.arch.lifecycle.ViewModelProvider
-import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
@@ -11,7 +10,7 @@ import android.view.View
 import android.widget.LinearLayout
 import com.noxel.colorstudio.R
 import com.noxel.colorstudio.getAppInjector
-import com.noxel.colorstudio.utils.LocaleManager
+import com.noxel.colorstudio.navigation.Navigator
 import com.noxel.colorstudio.utils.SharedPreference
 import javax.inject.Inject
 
@@ -21,10 +20,12 @@ import javax.inject.Inject
  */
 open class BaseActivity :AppCompatActivity() {
 
-//    @Inject
-//    lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
     @Inject
     lateinit var sharedPreference: SharedPreference
+    @Inject
+    lateinit var navigator: Navigator
 
     var customToolbar: View? = null
 

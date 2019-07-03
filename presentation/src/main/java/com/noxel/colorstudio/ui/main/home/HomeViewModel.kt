@@ -1,4 +1,4 @@
-package com.noxel.colorstudio.ui.main
+package com.noxel.colorstudio.ui.main.home
 
 import android.app.Activity
 import android.arch.lifecycle.ViewModel
@@ -15,12 +15,12 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 
-class MainViewModel @Inject constructor(private val slidersRepository: GetSlidersRepository,
+class HomeViewModel @Inject constructor(private val slidersRepository: GetSlidersRepository,
                                         private val productsRepository: GetProductsRepository): ViewModel(){
 
     val slider = SingleLiveEvent<Data<List<SliderModel>>>()
 
-    val products = SingleLiveEvent<Data<List<ProductModel>>>()
+    val products = SingleLiveEvent<Data<MutableList<ProductModel>>>()
 
     private var compositeDisposable = CompositeDisposable()
 
@@ -44,7 +44,7 @@ class MainViewModel @Inject constructor(private val slidersRepository: GetSlider
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
                 .subscribe({
-                    products.postValue(Data(dataState = DataState.SUCCESS, data = it, message = null))
+                    products.postValue(Data(dataState = DataState.SUCCESS, data = it, message = null) as Data<MutableList<ProductModel>>?)
                 }, {
                     var error =  ErrorHandling()
                     var detail = error.manageError(it, activity)

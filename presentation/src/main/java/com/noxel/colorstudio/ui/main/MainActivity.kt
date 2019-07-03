@@ -3,7 +3,6 @@ package com.noxel.colorstudio.ui.main
 import android.annotation.SuppressLint
 import android.arch.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.os.Handler
 import android.support.design.internal.BottomNavigationItemView
 import android.support.design.internal.BottomNavigationMenuView
 import android.support.design.widget.BottomNavigationView
@@ -11,25 +10,15 @@ import android.util.Log
 import com.noxel.colorstudio.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import android.support.v4.app.Fragment
-import android.util.DisplayMetrics
 import android.view.MenuItem
 import com.noxel.colorstudio.*
-import com.noxel.colorstudio.model.ProductModel
-import com.noxel.colorstudio.model.SliderModel
-import com.rd.animation.type.AnimationType
+import com.noxel.colorstudio.ui.main.category.CategoryFragment
+import com.noxel.colorstudio.ui.main.home.HomeFragment
 import javax.inject.Inject
-import android.content.Intent
-import android.content.ActivityNotFoundException
-import android.net.Uri
-import com.noxel.colorstudio.utils.CONSUMER
-import com.noxel.colorstudio.utils.COSTUMER
-import com.noxel.colorstudio.utils.SharedPreference
 
 
 class MainActivity : BaseActivity() {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     val homeFragment: Fragment = HomeFragment()
     val profileFragment: Fragment = ProfileFragment()
@@ -41,7 +30,6 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        getAppInjector().inject(this)
         init()
     }
 
@@ -56,10 +44,6 @@ class MainActivity : BaseActivity() {
         fm.beginTransaction().add(R.id.main_container, educationalFragment, "4").hide(educationalFragment).commit()
 
         bottomNavigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
-
-
-        getSliders()
-        getProducts()
 
 }
 
@@ -116,96 +100,6 @@ class MainActivity : BaseActivity() {
         }
     }
 
-/*sliders part -----------------------------------------------*/
-    private val selectedSlide: (SliderModel) -> Unit = {
-    it.target?.let { it1 -> openInstagram(it1) }
 
-    }
-    var sliderAdapter = SliderAdapter(selectedSlide)
-
-    fun getSliders(){
-        withViewModel<MainViewModel>(viewModelFactory){
-            getSliders(true, this@MainActivity)
-            observe(slider, ::getSlidersResponse)
-        }
-    }
-
-    private fun getSlidersResponse(data: Data<List<SliderModel>>?) {
-        data?.let {
-
-            when (it.dataState) {
-
-                DataState.LOADING -> {
-                    Log.d("=========>", "Loading")
-
-                }
-                DataState.SUCCESS -> {
-                    Log.d("=========>", "Success")
-                    vp_slider.adapter = sliderAdapter
-                    vp_slider.rotationY = 180F
-                    pageIndicatorView.setViewPager(vp_slider)
-                    pageIndicatorView.setAnimationType(AnimationType.SWAP)
-                    pageIndicatorView.rotationY = 180F
-
-//                 adapterSliderAdapter.AdapterPagerImage(parentActivity)
-                    it.data?.let { it1 -> sliderAdapter.setItems(it1, this) }
-                }
-                DataState.ERROR -> {
-                }
-            }
-        }
-    }
-
-    fun openInstagram(instagramAddress: String){
-        val uri = Uri.parse(instagramAddress)
-        val likeIng = Intent(Intent.ACTION_VIEW, uri)
-
-        likeIng.setPackage("com.instagram.android")
-
-        try {
-            startActivity(likeIng)
-        } catch (e: ActivityNotFoundException) {
-            startActivity(Intent(Intent.ACTION_VIEW,
-                    Uri.parse(instagramAddress)))
-        }
-
-    }
-/*products part -----------------------------------------------*/
-
-    private val selectedProduct: (ProductModel) -> Unit = {
-    }
-
-
-    var category : Int? = null
-    var featured : Int? = 1
-//    var userType = sharedPreference.retrievedUserType(this)
-    var userType = CONSUMER
-
-    fun getProducts(){
-        withViewModel<MainViewModel>(viewModelFactory){
-            getProducts(true, category, featured, this@MainActivity)
-            observe(products, ::getProductsResponse)
-        }
-    }
-
-    private fun getProductsResponse(data: Data<List<ProductModel>>?) {
-        data?.let {
-
-            when (it.dataState) {
-
-                DataState.LOADING -> {
-                    Log.d("=========>", "Loading")
-
-                }
-                DataState.SUCCESS -> {
-                    Log.d("=========>", "Success")
-                    productsRecycler.adapter = it.data?.let { it1 -> ProductsAdapter(it1, this, selectedProduct, userType) }
-
-                }
-                DataState.ERROR -> {
-                }
-            }
-        }
-    }
 
 }

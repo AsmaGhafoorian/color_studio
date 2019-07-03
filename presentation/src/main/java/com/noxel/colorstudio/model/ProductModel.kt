@@ -1,6 +1,7 @@
 package com.noxel.colorstudio.model
 
 import com.squareup.moshi.Json
+import java.io.Serializable
 
 data class ProductModel(
 
@@ -15,4 +16,4 @@ data class ProductModel(
         @Json(name = "image") val image : String? = null ,
         @Json(name = "barcode") val barcode : String ? = null
 
-)
+): Serializable

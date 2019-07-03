@@ -1,15 +1,13 @@
-package com.noxel.colorstudio.ui.main
+package com.noxel.colorstudio.ui.main.home
 
 import android.app.Activity
 import android.content.Context
 import android.support.constraint.ConstraintLayout
 import android.support.v4.view.PagerAdapter
-import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.noxel.colorstudio.R
-import com.noxel.colorstudio.loadAvatar
 import com.noxel.colorstudio.loadRectRoundImage
 import com.noxel.colorstudio.model.SliderModel
 import kotlinx.android.synthetic.main.adapter_slider.view.*

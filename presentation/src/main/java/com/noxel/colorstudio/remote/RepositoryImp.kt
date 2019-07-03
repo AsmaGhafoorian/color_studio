@@ -1,7 +1,6 @@
 package com.noxel.colorstudio.remote
 
-import com.noxel.colorstudio.model.ProductModel
-import com.noxel.colorstudio.model.SliderModel
+import com.noxel.colorstudio.model.*
 import io.reactivex.Single
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -37,12 +36,42 @@ class GetSlidersRepositoryImp @Inject constructor(
 }
 
 
-@Singleton
-class GetProductsRepositoryImp @Inject constructor(
-                       private val api : GetProductsApi
-                        ) : GetProductsRepository {
+    @Singleton
+    class GetProductsRepositoryImp @Inject constructor(
+                           private val api : GetProductsApi
+                            ) : GetProductsRepository {
 
-    override fun getProducts(refresh: Boolean, category: Int?, featured: Int?): Single<List<ProductModel>> {
-        return api.getProducts(category, featured).map { it }
+        override fun getProducts(refresh: Boolean, category: Int?, featured: Int?): Single<List<ProductModel>> {
+            return api.getProducts(category, featured).map { it }
+        }
     }
-}
+
+    @Singleton
+    class GetCategoriesRepositoryImp @Inject constructor(
+            private val api : GetCategoriesApi
+    ) : GetCategoriesRepository {
+
+        override fun getCategories(refresh: Boolean ): Single<List<CategoryModel>> {
+            return api.getCategories().map { it }
+        }
+    }
+
+    @Singleton
+    class GetSubCategoriesRepositoryImp @Inject constructor(
+            private val api : GetSubCategoriesApi
+    ) : GetSubCategoriesRepository {
+
+        override fun getSubCategories(refresh: Boolean, id: Int ): Single<List<SubCategoryModel>> {
+            return api.getSubCategories(id).map { it }
+        }
+    }
+
+    @Singleton
+    class PostSearchRepositoryImp @Inject constructor(
+            private val api : PostSearchApi
+    ) : PostSearchRepository {
+
+        override fun postSearch(refresh: Boolean, requestBody:SearchRequestModel ): Single<List<SearchModel>> {
+            return api.postSearch(requestBody).map { it }
+        }
+    }
