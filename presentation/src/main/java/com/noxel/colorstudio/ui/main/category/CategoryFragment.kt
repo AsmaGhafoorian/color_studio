@@ -15,8 +15,7 @@ import javax.inject.Inject
 
 class CategoryFragment : BaseFragment(){
 
-    @Inject
-    lateinit var navigator: Navigator
+   
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         Log.d("=========>", "CategoryFragment")

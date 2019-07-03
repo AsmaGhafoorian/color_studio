@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment
 import android.view.View
 import com.noxel.colorstudio.ViewModelFactory
 import com.noxel.colorstudio.getAppInjector
+import com.noxel.colorstudio.navigation.Navigator
 import javax.inject.Inject
 
 open class BaseFragment : Fragment(){
@@ -15,6 +16,8 @@ open class BaseFragment : Fragment(){
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     var activity : BaseActivity? = null
+    @Inject
+    lateinit var navigator: Navigator
 
 
     override fun onAttach(context: Activity?) {

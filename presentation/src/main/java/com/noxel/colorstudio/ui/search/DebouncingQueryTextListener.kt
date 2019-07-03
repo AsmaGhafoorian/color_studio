@@ -26,17 +26,17 @@ internal class DebouncingQueryTextListener(
 
     override fun onQueryTextChange(newText: String?): Boolean {
         searchJob?.cancel()
-//        searchJob = coroutineScope.launch {
-//            newText?.let {
-//                delay(debouncePeriod)
-//                onDebouncingQueryTextChange(newText)
-//            }
-//        }
+        searchJob = coroutineScope.launch {
+            newText?.let {
+                delay(debouncePeriod)
+                onDebouncingQueryTextChange(newText)
+            }
+        }
         return false
     }
 
-//    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-//    private fun destroy() {
-//        searchJob?.cancel()
-//    }
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+     fun destroy() {
+        searchJob?.cancel()
+    }
 }

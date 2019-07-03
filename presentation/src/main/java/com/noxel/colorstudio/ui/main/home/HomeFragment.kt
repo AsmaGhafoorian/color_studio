@@ -13,6 +13,7 @@ import com.noxel.colorstudio.model.ProductModel
 import com.noxel.colorstudio.model.SliderModel
 import com.noxel.colorstudio.ui.base.BaseFragment
 import com.noxel.colorstudio.utils.CONSUMER
+import com.noxel.colorstudio.utils.INSTAGRAM_PACKAGE
 import com.rd.animation.type.AnimationType
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -37,7 +38,7 @@ class HomeFragment : BaseFragment(){
         if(it.target != null)
             openInstagram(it.target)
         else{
-
+//            navigator.navigateToProductDetailsActivity(activity!!, it)
         }
     }
 
@@ -81,7 +82,7 @@ class HomeFragment : BaseFragment(){
         val uri = Uri.parse(instagramAddress)
         val likeIng = Intent(Intent.ACTION_VIEW, uri)
 
-        likeIng.setPackage("com.instagram.android")
+        likeIng.setPackage(INSTAGRAM_PACKAGE)
 
         try {
             startActivity(likeIng)
@@ -94,6 +95,8 @@ class HomeFragment : BaseFragment(){
 /*products part -----------------------------------------------*/
 
     private val selectedProduct: (ProductModel) -> Unit = {
+
+//        navigator.navigateToProductDetailsActivity(activity!!, it)
     }
 
 

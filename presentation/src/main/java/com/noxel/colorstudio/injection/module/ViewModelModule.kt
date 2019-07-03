@@ -7,6 +7,7 @@ import com.noxel.colorstudio.ViewModelKey
 import com.noxel.colorstudio.ui.main.home.HomeViewModel
 import com.noxel.colorstudio.ui.main.category.CategoryViewModel
 import com.noxel.colorstudio.ui.main.sub_category.SubCategoryViewModel
+import com.noxel.colorstudio.ui.search.SearchViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -33,4 +34,8 @@ abstract class ViewModelModule {
     internal abstract fun bindSubCategoryViewModel(factory: SubCategoryViewModel): ViewModel
 
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(SearchViewModel::class)
+    internal abstract fun bindSearchViewModel(factory: SearchViewModel): ViewModel
 }

@@ -27,7 +27,7 @@ object Versions {
     val constraint = "1.1.0"
     val maps = "12.0.0"
 
-    val kotlin = "1.2.31"
+    val kotlin = "1.3.40"
     val anko = "0.10.4"
     val timber = "4.7.0"
     val rxandroid = "2.0.2"
