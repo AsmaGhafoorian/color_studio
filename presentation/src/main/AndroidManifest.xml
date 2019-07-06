@@ -4,6 +4,8 @@
     package="com.noxel.colorstudio">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:name="com.noxel.colorstudio.App"
@@ -27,6 +29,7 @@
         <activity android:name=".ui.search.SearchActivity"/>
         <activity android:name=".ui.main.sub_category.SubCategoryActivity"/>
         <activity android:name=".ui.ProductDetailsActivity"/>
+        <activity android:name=".ui.magic_mirror.MagicMirrorActivity"/>
     </application>
 
 </manifest>

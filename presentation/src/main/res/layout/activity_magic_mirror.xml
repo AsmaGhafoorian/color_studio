@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <FrameLayout
+        android:id="@+id/camera_preview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        />
+
+    <ImageView
+        android:id="@+id/photo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"/>
+
+    <ImageButton
+        android:id="@+id/takePhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ic_take_photo"
+        android:scaleType="fitXY"
+        android:background="@color/transparent"
+        android:layout_marginBottom="@dimen/margin_20"/>
+
+    <ImageButton
+        android:id="@+id/switchCameraBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/takePhoto"
+        app:layout_constraintBottom_toBottomOf="@id/takePhoto"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ic_switch_camera"
+        android:background="@color/transparent"
+        android:layout_marginEnd="@dimen/margin_30"/>
+
+    <ImageButton
+        android:id="@+id/galleryBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/takePhoto"
+        app:layout_constraintBottom_toBottomOf="@id/takePhoto"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/ic_gallery"
+        android:background="@color/transparent"
+        android:layout_marginStart="@dimen/margin_30"/>
+
+
+</android.support.constraint.ConstraintLayout>

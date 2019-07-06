@@ -18,3 +18,6 @@ const val PRODUCT_DETAIL = "p_detail"
 const val PRODUCT_TITLE = "p_title"
 const val PRODUCT_COLOR_CODE = "color_code"
 
+val TAKE_PHOTO_REQUEST: Int = 2
+val PICK_PHOTO_REQUEST: Int = 1
+

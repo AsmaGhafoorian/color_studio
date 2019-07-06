@@ -1,4 +1,4 @@
-package com.noxel.colorstudio.ui.main
+package com.noxel.colorstudio.ui.main.educaional
 
 import com.noxel.colorstudio.ui.base.BaseFragment
 

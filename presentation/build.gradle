@@ -83,6 +83,9 @@ dependencies {
     /*search*/
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1'
 
+    /*permission*/
+    implementation 'com.karumi:dexter:5.0.0'
+
 }
 repositories {
     mavenCentral()

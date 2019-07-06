@@ -1,7 +1,7 @@
 package com.noxel.colorstudio.ui.main
 
+import android.Manifest
 import android.annotation.SuppressLint
-import android.arch.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.support.design.internal.BottomNavigationItemView
 import android.support.design.internal.BottomNavigationMenuView
@@ -10,11 +10,18 @@ import android.util.Log
 import com.noxel.colorstudio.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import android.support.v4.app.Fragment
+import android.support.v7.app.AlertDialog
 import android.view.MenuItem
+import android.widget.Toast
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.MultiplePermissionsReport
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.noxel.colorstudio.*
 import com.noxel.colorstudio.ui.main.category.CategoryFragment
+import com.noxel.colorstudio.ui.main.educaional.EducationalFragment
 import com.noxel.colorstudio.ui.main.home.HomeFragment
-import javax.inject.Inject
+import com.noxel.colorstudio.ui.main.profile.ProfileFragment
 
 
 class MainActivity : BaseActivity() {
@@ -38,12 +45,14 @@ class MainActivity : BaseActivity() {
         registerToolbar()
         removeShiftMode(bottomNavigation)
 
-        fm.beginTransaction().add(R.id.main_container,homeFragment, "1").commit()
+        fm.beginTransaction().add(R.id.main_container, homeFragment, "1").commit()
         fm.beginTransaction().add(R.id.main_container, profileFragment, "2").hide(profileFragment).commit()
         fm.beginTransaction().add(R.id.main_container, categoryFragment, "3").hide(categoryFragment).commit()
         fm.beginTransaction().add(R.id.main_container, educationalFragment, "4").hide(educationalFragment).commit()
 
         bottomNavigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+
+
 
 }
 
@@ -61,6 +70,10 @@ class MainActivity : BaseActivity() {
                         fm.beginTransaction().hide(activeFragment).show(profileFragment).commit()
                         activeFragment = profileFragment
                         return true
+                    }
+
+                    R.id.navigation_center ->{
+                       askCameraPermission()
                     }
                     R.id.navigation_category ->{
                         fm.beginTransaction().hide(activeFragment).show(categoryFragment).commit()
@@ -100,6 +113,47 @@ class MainActivity : BaseActivity() {
         }
     }
 
+    fun askCameraPermission(){
+        Dexter.withActivity(this)
+                .withPermissions(
+                        Manifest.permission.CAMERA,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE
+                ).withListener(object : MultiplePermissionsListener {
+                    override fun onPermissionRationaleShouldBeShown(permissions: MutableList<com.karumi.dexter.listener.PermissionRequest>?, token: PermissionToken?) {
 
+                        AlertDialog.Builder(this@MainActivity)
+                                .setTitle(
+                                        "Permissions Error!")
+                                .setMessage(
+                                        "Please allow permissions to take photo with camera")
+                                .setNegativeButton(
+                                        android.R.string.cancel
+                                ) { dialog, _ ->
+                                    dialog.dismiss()
+                                    token?.cancelPermissionRequest()
+                                }
+                                .setPositiveButton(android.R.string.ok
+                                ) { dialog, _ ->
+                                    dialog.dismiss()
+                                    token?.continuePermissionRequest()
+                                }
+                                .setOnDismissListener {
+                                    token?.cancelPermissionRequest() }
+                                .show()
+
+                    }
+
+                    override fun onPermissionsChecked(report: MultiplePermissionsReport) {/* ... */
+                        if(report.areAllPermissionsGranted()){
+                            //once permissions are granted, launch the camera
+                            navigator.navigateToMagicMirrorActivity(this@MainActivity)
+                        }else{
+                            Toast.makeText(this@MainActivity, "All permissions need to be granted to take photo", Toast.LENGTH_LONG).show()
+                        }
+                    }
+
+
+                }).check()
+    }
 
 }

@@ -10,7 +10,9 @@
             android:id="@+id/navigation_profile"
             android:icon="@drawable/ic_nav_profile"
             android:title=""/>
-
+    <item
+        android:id="@+id/navigation_center"
+        android:title=""/>
     <item
             android:id="@+id/navigation_category"
             android:icon="@drawable/ic_nav_category"
