@@ -21,8 +21,8 @@ class CategoryViewModel @Inject constructor(private val categoriesRepository: Ge
 
     private var compositeDisposable = CompositeDisposable()
 
-    fun getCategories(refresh: Boolean, activity: Activity){
-        compositeDisposable.add(categoriesRepository.getCategories(refresh)
+    fun getCategories(refresh: Boolean, activity: Activity, hairColor : Int?){
+        compositeDisposable.add(categoriesRepository.getCategories(refresh, hairColor)
                 .doOnSubscribe{categories.postValue(Data(dataState = DataState.LOADING, data = categories.value?.data, message = null))}
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())

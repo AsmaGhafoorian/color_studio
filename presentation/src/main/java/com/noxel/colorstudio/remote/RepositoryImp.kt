@@ -51,8 +51,8 @@ class GetSlidersRepositoryImp @Inject constructor(
             private val api : GetCategoriesApi
     ) : GetCategoriesRepository {
 
-        override fun getCategories(refresh: Boolean ): Single<List<CategoryModel>> {
-            return api.getCategories().map { it }
+        override fun getCategories(refresh: Boolean, hairColor: Int? ): Single<List<CategoryModel>> {
+            return api.getCategories(hairColor).map { it }
         }
     }
 

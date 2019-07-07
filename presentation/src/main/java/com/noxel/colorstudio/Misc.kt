@@ -24,7 +24,7 @@ fun AppCompatActivity.getAppInjector(): Injector = (app).injector
 
 fun ViewGroup.inflate(layoutId: Int, attachToRoot: Boolean = false): View = LayoutInflater.from(context).inflate(layoutId, this, attachToRoot)
 
-fun ImageView.loadCircleAvatar(imagePath: String) = Glide.with(this).load(imagePath).apply(RequestOptions.circleCropTransform()).into(this)
+fun ImageView.loadCircleAvatar(imagePath: String) = Glide.with(this).load("$BASE_URL/$imagePath").apply(RequestOptions.circleCropTransform()).into(this)
 fun ImageView.loadAvatar(imagePath: String) = Glide.with(this).load(imagePath).into(this)
 
 
@@ -38,7 +38,7 @@ var options = RequestOptions()
 
 fun ImageView.loadProfileAvatar(url: String) = Glide.with(this).load(url).apply(options).into(this)
 
-fun ImageView.loadRectRoundImage(imagePath: String) = Glide.with(this).load(BASE_URL + "/" + imagePath)
+fun ImageView.loadRectRoundImage(imagePath: String) = Glide.with(this).load("$BASE_URL/$imagePath")
         .apply(RequestOptions().transforms(/* CenterCrop(),*/ RoundedCorners(20)))
 //        .apply(RequestOptions().placeholder(R.drawable.red_grad))
         .into(this)

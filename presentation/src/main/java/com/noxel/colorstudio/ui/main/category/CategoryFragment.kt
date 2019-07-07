@@ -47,7 +47,7 @@ class CategoryFragment : BaseFragment(){
 
     fun getCategories(){
         activity?.withViewModel<CategoryViewModel>(viewModelFactory){
-            getCategories(true, activity!!)
+            getCategories(true, activity!!, null)
             observe(categories, ::getCategoriesResponse)
         }
     }

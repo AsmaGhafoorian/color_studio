@@ -23,7 +23,7 @@ interface GetProductsApi{
 
 interface GetCategoriesApi{
     @GET("api/category")
-    fun getCategories() : Single<List<CategoryModel>>
+    fun getCategories(@Query("hair_color") hairColor:Int?) : Single<List<CategoryModel>>
 }
 
 interface GetSubCategoriesApi{

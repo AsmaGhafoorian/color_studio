@@ -30,6 +30,8 @@
         <activity android:name=".ui.main.sub_category.SubCategoryActivity"/>
         <activity android:name=".ui.ProductDetailsActivity"/>
         <activity android:name=".ui.magic_mirror.MagicMirrorActivity"/>
+        <activity android:name=".ui.magic_mirror.ColorCategoryActivity"/>
+        <activity android:name=".ui.magic_mirror.ColorActivity"/>
     </application>
 
 </manifest>

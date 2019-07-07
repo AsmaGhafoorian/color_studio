@@ -18,7 +18,7 @@ interface GetProductsRepository {
 }
 
 interface GetCategoriesRepository {
-    fun getCategories(refresh: Boolean) : Single<List<CategoryModel>>
+    fun getCategories(refresh: Boolean, hairColor: Int?) : Single<List<CategoryModel>>
 }
 
 interface GetSubCategoriesRepository {

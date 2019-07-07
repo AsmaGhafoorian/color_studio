@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/photo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"/>
+
+
+    <android.support.v7.widget.RecyclerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/colorsRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+        android:layoutDirection="rtl"
+        android:background="@color/white"
+        android:scrollbars="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:listitem="@layout/adapter_color_category"
+        />
+
+    <ImageView
+        android:id="@+id/colorCatImage"
+        android:layout_width="@dimen/size_60"
+        android:layout_height="@dimen/size_60"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/colorCatName"
+        android:layout_marginEnd="@dimen/margin_30"
+        android:background="@color/transparent"/>
+
+    <TextView
+        android:id="@+id/colorCatName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/colorsRecycler"
+        android:layout_marginTop="@dimen/margin_10"
+        android:textColor="@color/white"
+        android:fontFamily="@font/medium"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="@id/colorCatImage"
+        app:layout_constraintEnd_toEndOf="@id/colorCatImage"
+        android:textSize="@dimen/font_12"/>
+
+</android.support.constraint.ConstraintLayout>

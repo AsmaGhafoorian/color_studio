@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
+import com.asiatech.presentation.utils.PageLoadingView
 import com.noxel.colorstudio.R
 import com.noxel.colorstudio.getAppInjector
 import com.noxel.colorstudio.navigation.Navigator
@@ -26,6 +27,7 @@ open class BaseActivity :AppCompatActivity() {
     lateinit var sharedPreference: SharedPreference
     @Inject
     lateinit var navigator: Navigator
+    var loadingView: PageLoadingView? = null
 
     var customToolbar: View? = null
 
@@ -53,4 +55,14 @@ open class BaseActivity :AppCompatActivity() {
         parent.setContentInsetsAbsolute(0, 0)
     }
 
+    fun showPagesLoading() {
+        loadingView = PageLoadingView(this)
+        loadingView!!.setCancelable(false)
+        loadingView!!.show()
+    }
+
+    fun hidePagesLoading() {
+        if (loadingView != null && loadingView?.isShowing()!!)
+            loadingView?.dismiss()
+    }
 }

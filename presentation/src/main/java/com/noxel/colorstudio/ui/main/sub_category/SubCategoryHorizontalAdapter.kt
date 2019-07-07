@@ -18,7 +18,7 @@ class SubCategoryHorizontalAdapter (val categories: List<SubCategoryModel>,
 
     override fun getItemCount(): Int = categories.count()
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(categories[position])
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(categories[position], position)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(parent)
 
@@ -26,11 +26,14 @@ class SubCategoryHorizontalAdapter (val categories: List<SubCategoryModel>,
     inner class ViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(parent.inflate(R.layout.adapter_subcategory_horizontal)) {
 
         @SuppressLint("NewApi", "SetTextI18n")
-        fun bind(category: SubCategoryModel) {
+        fun bind(category: SubCategoryModel, position: Int) {
 
             category.image?.let { itemView.image.loadRectRoundImage(it) }
             itemView.title.text = category.title
 
+            if (position == 0){
+                itemView.isSelected = true
+            }
             itemView.setOnClickListener {
                 selectedCategory.invoke(category)
             }

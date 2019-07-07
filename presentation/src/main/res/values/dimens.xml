@@ -10,7 +10,11 @@
 
     <!--font size-->
     <dimen name="font_16">16sp</dimen>
+    <dimen name="font_12">12sp</dimen>
 
+    <!--image size-->
+    <dimen name="size_30">30dp</dimen>
+    <dimen name="size_60">60dp</dimen>
 
 
 </resources>
